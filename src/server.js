@@ -9,6 +9,9 @@ server.set('view engine', 'ejs')
 // Usando a pasta estatica public
 server.use(express.static("public"))
 
+// Liberando o uso do req.body
+server.use(express.urlencoded({ extended: true }))
+
 // Usando as routas
 server.use(routes)
 
