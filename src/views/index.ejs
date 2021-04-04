@@ -75,9 +75,10 @@
       <main class="animate-up delay-2">
         <h1 class="sr-only">Trabalhos</h1>
 
-        <% jobs.forEach(job => { %>
+        <div class="cards">
 
-          <div class="cards">
+          <% jobs.forEach(job => { %>
+
             <div class="card <%= job.status %>" data-id="<%= job.id %>">
               <div class="id column"> <%= job.id %> </div>
               <div class="name column">
@@ -114,9 +115,9 @@
               </div>
             </div>
             <!-- end card -->
-
-        <% }) %> 
-
+          <% }) %> 
+          </div>
+          <!-- end cards-->
       </main>
     </div>
     <!-- end container -->
