@@ -131,6 +131,7 @@ const Job = {
               return res.send('Job not found!')
             }
       
+            // Atualizando informações do job
             const updatedJob = {
               ...job, 
               name: req.body.name,
@@ -138,6 +139,7 @@ const Job = {
               "daily-hours": req.body["daily-hours"] 
             }
       
+            // inserindo job atualizado de volta pro array
             Job.data = Job.data.map(job => {
               if(Number(job.id) === Number(jobId)) {
                 job = updatedJob
@@ -147,6 +149,15 @@ const Job = {
             })
       
             res.redirect('/job/' + jobId)
+        },
+
+        delete(req, res) {
+            const jobId = req.params.id
+
+            // Filtrando retirando o job
+            Job.data = Job.data.filter(job => Number(job.id) !== Number(jobId))
+
+            return res.redirect('/')
         }
     },
 
@@ -182,6 +193,7 @@ routes.get('/job', Job.controllers.create)
 routes.post('/job', Job.controllers.save)
 routes.get('/job/:id', Job.controllers.show)
 routes.post('/job/:id', Job.controllers.update)
+routes.post('/job/delete/:id', Job.controllers.delete)
 routes.get('/profile', Profile.controllers.index)
 routes.post('/profile', Profile.controllers.update)
 
